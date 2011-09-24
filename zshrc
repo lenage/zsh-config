@@ -7,8 +7,10 @@ PATH=~/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/go/bin:$PATH;
 export PATH
 
 # Setting ZSH_THEME
-ZSH_THEME="arrow"
-source "$HOME/.zsh/themes/$ZSH_THEME.zsh-theme"
+if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
+
+PROMPT='%{$fg[$NCOLOR]%}%c ➤ %{$reset_color%}'
+RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 # Load git functions
 source "/Users/lenage/.zsh/lib/git.zsh"
