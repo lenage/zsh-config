@@ -37,7 +37,6 @@ fi
 
 # vi mode
 bindkey -v
-bindkey "^F" vi-cmd-mode
 bindkey jj vi-cmd-mode
 
 # use incremental search
@@ -88,6 +87,8 @@ alias gist='nocorrect gist'
 alias heroku='nocorrect heroku'
 alias ebuild='nocorrect ebuild'
 alias hpodder='nocorrect hpodder'
+alias hpodder='nocorrect hpodder'
+alias vim='nocorrect vim'
 
 # Enable extended globbing
 setopt EXTENDED_GLOB
@@ -122,3 +123,4 @@ setopt long_list_jobs
 ## pager
 export PAGER=less
 export LC_CTYPE=en_US.UTF-8
+ulimit -s unlimited
