@@ -31,8 +31,8 @@ setopt auto_cd
 export EDITOR=vim
 
 # aliases
-if [ -e "$HOME/.aliases" ]; then
-  source "$HOME/.aliases"
+if [ -e "$HOME/.zsh/aliases" ]; then
+  source "$HOME/.zsh/aliases"
 fi
 
 # vi mode
@@ -97,6 +97,9 @@ setopt EXTENDED_GLOB
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+HISTCONTROL=ignoreboth
+HISTIGNORE='ls:bg:fg:history'
+HISTTIMEFORMAT='%F %T '
 
 setopt hist_ignore_dups # ignore duplication command history list
 setopt share_history # share command history data
