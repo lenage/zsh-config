@@ -3,13 +3,12 @@ source ~/.bash_profile
 fpath=(~/.zsh/completion $fpath)
 
 # Path
-PATH=~/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/go/bin:$PATH;
-export PATH
-
+export GOPATH=$HOME/Project/golang
+export PATH="$HOME/Library/Haskell/bin:~/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 
-PROMPT='%{$fg[$NCOLOR]%}%c ➤ %{$reset_color%}'
+PROMPT='%{$fg[$NCOLOR]%}%c $ %{$reset_color%}'
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 # Load git functions
@@ -35,16 +34,15 @@ if [ -e "$HOME/.zsh/aliases" ]; then
   source "$HOME/.zsh/aliases"
 fi
 
-# vi mode
-bindkey -v
-bindkey jj vi-cmd-mode
+#use emacs keybinding
+bindkey -e
 
 # use incremental search
 bindkey "^R" history-incremental-search-backward
 
 # add some readline keys back
-bindkey "^A" beginning-of-line
-bindkey "^E" end-of-line
+# bindkey "^A" beginning-of-line
+# bindkey "^E" end-of-line
 
 # handy keybindings
 bindkey "^P" history-search-backward
@@ -78,18 +76,6 @@ setopt cdablevars
 
 # Try to correct command line spelling
 setopt correct_all
-
-alias man='nocorrect man'
-alias mv='nocorrect mv'
-alias mysql='nocorrect mysql'
-alias mkdir='nocorrect mkdir'
-alias gist='nocorrect gist'
-alias heroku='nocorrect heroku'
-alias ebuild='nocorrect ebuild'
-alias hpodder='nocorrect hpodder'
-alias hpodder='nocorrect hpodder'
-alias vim='nocorrect vim'
-
 # Enable extended globbing
 setopt EXTENDED_GLOB
 
@@ -127,3 +113,5 @@ setopt long_list_jobs
 export PAGER=less
 export LC_CTYPE=en_US.UTF-8
 ulimit -s unlimited
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

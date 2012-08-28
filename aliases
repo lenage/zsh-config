@@ -1,3 +1,19 @@
+# no-correct command
+alias man='nocorrect man'
+alias mv='nocorrect mv'
+alias mysql='nocorrect mysql'
+alias mkdir='nocorrect mkdir'
+alias gist='nocorrect gist'
+alias heroku='nocorrect heroku'
+alias ebuild='nocorrect ebuild'
+alias hpodder='nocorrect hpodder'
+alias hpodder='nocorrect hpodder'
+alias vim='nocorrect vim'
+alias mpd='nocorrect mpd ~/.mpd/mpd.conf'
+alias mpc='nocorrect mpc'
+alias go='nocorrect go'
+alias mongod='mongod --dbpath=$HOME/data/db'
+
 # Push and pop directories on directory stack
 alias pu='pushd'
 alias po='popd'
@@ -44,6 +60,8 @@ alias sudo='sudo '
 alias scat='sudo cat'
 alias svim='sudo vim'
 alias v="vim"
+alias emacs='open -a emacs "$@"'
+alias e="emacsclient -n"
 alias root='sudo su'
 alias reboot='sudo reboot'
 alias halt='sudo halt'
@@ -64,7 +82,6 @@ alias lm='la | more'
 # safety features
 alias cp='cp -v'
 alias mv='mv -i -v'
-alias rm='rm -vi'                    # 'rm -i' prompts for every file
 alias ln='ln -i'
 #python 2to3
 alias pserver='python -m SimpleHTTPServer'
@@ -143,5 +160,9 @@ alias bl="bundle list"
 alias bu="bundle update"
 alias bp="bundle package"
 alias qor="cd ~/Project/qor/"
+alias github="cd ~/Project/github/"
+alias cap="bundle exec cap"
 alias es="/usr/local/Cellar/emacs/HEAD/Emacs.app/Contents/MacOS/Emacs -nw"
+alias sb='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 alias mux="tmuxinator"
+alias ehost="vim /etc/hosts"
