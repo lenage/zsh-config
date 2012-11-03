@@ -113,5 +113,3 @@ setopt long_list_jobs
 export PAGER=less
 export LC_CTYPE=en_US.UTF-8
 ulimit -s unlimited
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
