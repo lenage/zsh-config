@@ -25,7 +25,7 @@ alias sl=ls # often screw this up
 
 # modified commands
 alias diff='colordiff'              # requires colordiff package
-alias grep='grep --color=auto'
+alias grep='grep --color=auto -n'
 alias more='less'
 alias df='df -h'
 alias du='du -c -h'
