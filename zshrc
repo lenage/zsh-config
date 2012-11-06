@@ -9,11 +9,6 @@ if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 PROMPT='%{$fg[$NCOLOR]%}%c $ %{$reset_color%}'
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
-# Load git functions
-<<<<<<< Updated upstream
-source "/Users/lenage/.zsh/lib/git.zsh"
-source "/Users/lenage/.zsh/lib/completion.zsh"
-
 # Load custom files
 source "/home/lenage/.zsh/lib/git.zsh"
 source "/home/lenage/.zsh/lib/completion.zsh"
