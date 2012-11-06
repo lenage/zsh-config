@@ -3,21 +3,21 @@ source ~/.bash_profile
 fpath=(~/.zsh/completion $fpath)
 
 # Path
-export GOPATH=$HOME/Project/golang
-export PATH="$HOME/Library/Haskell/bin:~/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
+export PATH=~/bin:$PATH
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
-
 PROMPT='%{$fg[$NCOLOR]%}%c $ %{$reset_color%}'
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 # Load git functions
+<<<<<<< Updated upstream
 source "/Users/lenage/.zsh/lib/git.zsh"
 source "/Users/lenage/.zsh/lib/completion.zsh"
 
 # Load custom files
-source "/Users/lenage/.zsh/custom/lenage.zsh"
-source "/Users/lenage/.zsh/custom/project.zsh"
+source "/home/lenage/.zsh/lib/git.zsh"
+source "/home/lenage/.zsh/lib/completion.zsh"
+
 
 # completion
 autoload -U compinit
@@ -113,5 +113,3 @@ setopt long_list_jobs
 export PAGER=less
 export LC_CTYPE=en_US.UTF-8
 ulimit -s unlimited
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
