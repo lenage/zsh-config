@@ -1,14 +1,18 @@
 source ~/.bash_profile
 # load our own completion functions
+fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(~/.zsh/completion $fpath)
 
 # Path
+export ANDROID_HOME="$HOME/Vendor/Android/sdk"
 export GOPATH=$HOME/Project/golang
-export PATH="$HOME/Library/Haskell/bin:~/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
+#ANDROIDPATH="$HOME/Vendor/Android/sdk/tools:$HOME/Vendor/Android/sdk/platform-tools"
+#export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
+export PATH="$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 
-PROMPT='%{$fg[$NCOLOR]%}%c $ %{$reset_color%}'
+PROMPT='%{$fg[$NCOLOR]%}%c 🚴  %{$reset_color%}'
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 # Load git functions
@@ -25,6 +29,7 @@ compinit
 
 # automatically enter directories without cd
 setopt auto_cd
+bindkey -s cd 'Not needed in zsh'
 
 # use vim as an editor
 export EDITOR=vim
@@ -69,11 +74,6 @@ export EYRC=./.eyrc
 setopt auto_pushd
 export dirstacksize=5
 
-# awesome cd movements from zshkit
-setopt AUTOCD
-setopt AUTOPUSHD PUSHDMINUS PUSHDSILENT PUSHDTOHOME
-setopt cdablevars
-
 # Try to correct command line spelling
 setopt correct_all
 # Enable extended globbing
@@ -95,8 +95,6 @@ setopt inc_append_history
 setopt extended_history
 setopt hist_expire_dups_first
 setopt hist_ignore_space
-
-setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 
 ## smart urls
@@ -113,3 +111,10 @@ setopt long_list_jobs
 export PAGER=less
 export LC_CTYPE=en_US.UTF-8
 ulimit -s unlimited
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+### Added by the SMLNG 110.75
+export PATH="/usr/local/smlnj-110.75/bin:$PATH"
+### add node PATH
+export PATH="/usr/local/share/npm/bin:$PATH"
