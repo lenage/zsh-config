@@ -3,7 +3,7 @@ source ~/.bash_profile
 fpath=(~/.zsh/completion $fpath)
 
 # Path
-export PATH=~/bin:$PATH
+export PATH=/opt/vc/bin:~/bin:$PATH
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 PROMPT='%{$fg[$NCOLOR]%}%c $ %{$reset_color%}'
