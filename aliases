@@ -107,5 +107,5 @@ alias gst='git status'
 alias gl='git log'
 alias glp='git log -p'
 
-alias tmux="tmux attach || tmux new-session
+alias tmux="tmux attach || tmux new-session"
 alias psc='ps xawf -eo pid,user,args,cgroup'
