@@ -110,7 +110,7 @@ export LC_CTYPE=en_US.UTF-8
 ulimit -s unlimited
 
 # TMUX
-if which tmux 2>&1 >/dev/null; then
+#if which tmux 2>&1 >/dev/null; then
     #if not inside a tmux session, and if no session is started, start a new session
-    test -z "$TMUX" && (tmux attach || tmux new-session)
-fi
+#    test -z "$TMUX" && (tmux attach || tmux new-session)
+#fi

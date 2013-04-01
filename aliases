@@ -1,5 +1,3 @@
-
-
 ####################
 #fork from .bashrc #
 ####################
@@ -104,29 +102,10 @@ function x() {
 
 alias c='remind -w$(tput cols) -mc+lc2 ~/.reminders'
 
-#uninstall Xcode
-alias uninstallxcode='sudo /Developer/Library/uninstall-devtools --mode=all'
-
 # Git alias
 alias gst='git status'
 alias gl='git log'
 alias glp='git log -p'
 
-############
-# bundler
-############
-
-alias be="bundle exec"
-alias bi="bundle install"
-alias bl="bundle list"
-alias bu="bundle update"
-alias bp="bundle package"
-alias qor="cd ~/Project/qor/"
-alias github="cd ~/Project/github/"
-alias cap="bundle exec cap"
-alias es="/usr/local/Cellar/emacs/HEAD/Emacs.app/Contents/MacOS/Emacs -nw"
-alias sb='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
-alias mux="tmuxinator"
-alias ehost="vim /etc/hosts"
-alias inxi='inxi -c0 -v7'
+alias tmux="tmux attach || tmux new-session
 alias psc='ps xawf -eo pid,user,args,cgroup'
