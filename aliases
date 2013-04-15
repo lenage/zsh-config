@@ -13,10 +13,6 @@ alias _='sudo'
 # Show history
 alias history='fc -l 1'
 
-# List direcory contents
-alias lsa='ls -lah'
-alias ll='ls -l'
-alias sl=ls # often screw this up
 
 
 ####################
@@ -62,6 +58,9 @@ alias lx='ll -BX'                   # sort by extension
 alias lz='ll -rS'                   # sort by size
 alias lt='ll -rt'                   # sort by date
 alias lm='la | more'
+alias lsa='ls -lah'
+alias ll='ls -l'
+alias sl=ls # often screw this up
 
 # safety features
 alias cp='cp -v'
@@ -76,7 +75,7 @@ function t(){
     sh ~/bin/todo.sh ls
   else
     sh ~/bin/todo.sh $*
-      fi
+  fi
 }
 
 function zsh_stats() {
@@ -149,4 +148,4 @@ alias cap="bundle exec cap"
 alias sb='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 alias mux="tmuxinator"
 alias ehost="vim /etc/hosts"
-alias gpg='gpg2'
+alias irb='pry'

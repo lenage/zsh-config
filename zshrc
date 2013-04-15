@@ -6,18 +6,21 @@ fpath=(~/.zsh/completion $fpath)
 # Path
 export ANDROID_HOME="$HOME/Vendor/Android/sdk"
 export GOPATH=$HOME/Project/golang
-#ANDROIDPATH="$HOME/Vendor/Android/sdk/tools:$HOME/Vendor/Android/sdk/platform-tools"
-#export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
-export PATH="$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
+export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+ANDROIDPATH="$HOME/Vendor/Android/sdk/tools:$HOME/Vendor/Android/sdk/platform-tools"
+export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
+#export PATH="$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 
-PROMPT='%{$fg[$NCOLOR]%}%c 🚴  %{$reset_color%}'
+#PROMPT='%{$fg[$NCOLOR]%}%c 🚴  %{$reset_color%}'
+PROMPT='%{$fg[$NCOLOR]%}%c $ %{$reset_color%}'
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 # Load git functions
 source "/Users/lenage/.zsh/lib/git.zsh"
 source "/Users/lenage/.zsh/lib/completion.zsh"
+source "/Users/lenage/.zsh/lib/gpg-agent.zsh"
 
 # Load custom files
 source "/Users/lenage/.zsh/custom/lenage.zsh"
@@ -29,7 +32,6 @@ compinit
 
 # automatically enter directories without cd
 setopt auto_cd
-bindkey -s cd 'Not needed in zsh'
 
 # use vim as an editor
 export EDITOR=vim
