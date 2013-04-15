@@ -39,7 +39,7 @@ cdpath=(.)
 [ -r /etc/hosts ] && : ${(A)_etc_hosts:=${(s: :)${(ps:\t:)${${(f)~~"$(</etc/hosts)"}%%\#*}##[:blank:]#[^[:blank:]]#}}} || _etc_hosts=()
 hosts=(
   "$_ssh_hosts[@]"
-  "$_etc_hosts[@]"
+  # "$_etc_hosts[@]"
   `hostname`
   localhost
 )
@@ -61,4 +61,3 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 
 # ... unless we really want to.
 zstyle '*' single-ignored show
-

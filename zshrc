@@ -26,10 +26,6 @@ source "/Users/lenage/.zsh/lib/gpg-agent.zsh"
 source "/Users/lenage/.zsh/custom/lenage.zsh"
 source "/Users/lenage/.zsh/custom/project.zsh"
 
-# completion
-autoload -U compinit
-compinit
-
 # automatically enter directories without cd
 setopt auto_cd
 
