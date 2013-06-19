@@ -41,7 +41,7 @@ alias scat='sudo cat'
 alias svim='sudo vim'
 alias v="vim"
 #alias emacs='open -a emacs "$@"'
-alias e="emacsclient -n"
+alias e='emacsclient -n'
 alias root='sudo su'
 alias reboot='sudo reboot'
 alias halt='sudo halt'
@@ -75,6 +75,15 @@ function t(){
     sh ~/bin/todo.sh ls
   else
     sh ~/bin/todo.sh $*
+  fi
+}
+
+#alias for todo.txt LACOSTE
+function todo(){
+  if [ $# -eq 0 ];then
+    sh ~/bin/todo.sh -d ~/.todo/config.lacoste ls
+  else
+    sh ~/bin/todo.sh -d ~/.todo/config.lacoste $*
   fi
 }
 

@@ -14,28 +14,29 @@ export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 
 #PROMPT='%{$fg[$NCOLOR]%}%c 🚴  %{$reset_color%}'
-PROMPT='%{$fg[$NCOLOR]%}%c $ %{$reset_color%}'
+PROMPT='%{$fg[$NCOLOR]%}%c 🐚  %{$reset_color%}'
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 # Load git functions
 source "/Users/lenage/.zsh/lib/git.zsh"
 source "/Users/lenage/.zsh/lib/completion.zsh"
+source "/Users/lenage/.zsh/lib/correction.zsh"
 source "/Users/lenage/.zsh/lib/gpg-agent.zsh"
 
 # Load custom files
 source "/Users/lenage/.zsh/custom/lenage.zsh"
 source "/Users/lenage/.zsh/custom/project.zsh"
 
+# aliases
+if [ -e "$HOME/.zsh/lib/aliases.zsh" ]; then
+  source "$HOME/.zsh/lib/aliases.zsh"
+fi
+
 # automatically enter directories without cd
 setopt auto_cd
 
-# use vim as an editor
-export EDITOR=vim
-
-# aliases
-if [ -e "$HOME/.zsh/aliases" ]; then
-  source "$HOME/.zsh/aliases"
-fi
+# use Emacs as an editor
+#export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
 
 #use emacs keybinding
 bindkey -e
@@ -72,8 +73,6 @@ export EYRC=./.eyrc
 setopt auto_pushd
 export dirstacksize=5
 
-# Try to correct command line spelling
-setopt correct_all
 # Enable extended globbing
 setopt EXTENDED_GLOB
 
@@ -116,3 +115,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/usr/local/smlnj-110.75/bin:$PATH"
 ### add node PATH
 export PATH="/usr/local/share/npm/bin:$PATH"
+
+## plugins
+plugins=(colorman)
