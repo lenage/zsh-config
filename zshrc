@@ -13,8 +13,9 @@ export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 
-#PROMPT='%{$fg[$NCOLOR]%}%c 🚴  %{$reset_color%}'
-PROMPT='%{$fg[$NCOLOR]%}%c 🐚  %{$reset_color%}'
+# PROMPT='%{$fg[$NCOLOR]%}%c 🚴  %{$reset_color%}'
+# PROMPT='%{$fg[$NCOLOR]%}%c $(~/.rbenv/bin/rbenv-prompt) 🐚 %{$reset_color%}'
+PROMPT='%{$fg[$NCOLOR]%}%c 🐚 %{$reset_color%} '
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 # Load git functions
@@ -22,21 +23,20 @@ source "/Users/lenage/.zsh/lib/git.zsh"
 source "/Users/lenage/.zsh/lib/completion.zsh"
 source "/Users/lenage/.zsh/lib/correction.zsh"
 source "/Users/lenage/.zsh/lib/gpg-agent.zsh"
-
-# Load custom files
-source "/Users/lenage/.zsh/custom/lenage.zsh"
-source "/Users/lenage/.zsh/custom/project.zsh"
-
 # aliases
 if [ -e "$HOME/.zsh/lib/aliases.zsh" ]; then
   source "$HOME/.zsh/lib/aliases.zsh"
 fi
+# Load custom files
+source "/Users/lenage/.zsh/custom/lenage.zsh"
+source "/Users/lenage/.zsh/custom/project.zsh"
 
 # automatically enter directories without cd
 setopt auto_cd
 
 # use Emacs as an editor
 #export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
+export EDITOR="vim"
 
 #use emacs keybinding
 bindkey -e
@@ -117,4 +117,13 @@ export PATH="/usr/local/smlnj-110.75/bin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
 
 ## plugins
-plugins=(colorman)
+plugins=(colored-man)
+
+# Load all of the plugins that were defined in ~/.zshrc
+for plugin ($plugins); do
+  if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
+    source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
+  elif [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
+    source $ZSH/plugins/$plugin/$plugin.plugin.zsh
+  fi
+done
