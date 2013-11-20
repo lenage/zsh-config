@@ -17,11 +17,15 @@ if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 
 # PROMPT='%{$fg[$NCOLOR]%}%c 🚴  %{$reset_color%}'
 # PROMPT='%{$fg[$NCOLOR]%}%c $(~/.rbenv/bin/rbenv-prompt) 🐚 %{$reset_color%}'
-PROMPT='%{$fg[$NCOLOR]%}%c 🐚 %{$reset_color%} '
+if [ -n "$INSIDE_EMACS" ]; then
+   PROMPT='%{$fg[$NCOLOR]%}%c $%{$reset_color%} '
+else
+   PROMPT='%{$fg[$NCOLOR]%}%c 🐚 %{$reset_color%} '
+fi
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 # Load git functions
-# source "/Users/lenage/.zsh/lib/gpg-agent.zsh"
+#source "/Users/lenage/.zsh/lib/gpg-agent.zsh"
 source "/Users/lenage/.zsh/lib/git.zsh"
 source "/Users/lenage/.zsh/lib/completion.zsh"
 source "/Users/lenage/.zsh/lib/correction.zsh"
