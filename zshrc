@@ -1,4 +1,6 @@
 source ~/.bash_profile
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
 # load our own completion functions
 fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(~/.zsh/completion $fpath)
@@ -19,10 +21,10 @@ PROMPT='%{$fg[$NCOLOR]%}%c 🐚 %{$reset_color%} '
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 # Load git functions
+# source "/Users/lenage/.zsh/lib/gpg-agent.zsh"
 source "/Users/lenage/.zsh/lib/git.zsh"
 source "/Users/lenage/.zsh/lib/completion.zsh"
 source "/Users/lenage/.zsh/lib/correction.zsh"
-source "/Users/lenage/.zsh/lib/gpg-agent.zsh"
 # aliases
 if [ -e "$HOME/.zsh/lib/aliases.zsh" ]; then
   source "$HOME/.zsh/lib/aliases.zsh"
@@ -133,4 +135,4 @@ export CDPATH=~/Project
 #http://docs.python-guide.org/en/latest/dev/virtualenvs/
 export WORKON_HOME=~/.pythonenv
 source /usr/local/bin/virtualenvwrapper.sh
-
+source /usr/local/Cellar/autoenv/0.1.0/activate.sh
