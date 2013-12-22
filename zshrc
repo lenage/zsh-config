@@ -1,12 +1,13 @@
-source ~/.bash_profile
+#source ~/.bash_profile
+export LC_ALL=C
 # load our own completion functions
 fpath=(~/.zsh/completion $fpath)
 
 # Path
-export PATH=/opt/vc/bin:~/bin:$PATH
+#export PATH=/opt/vc/bin:~/bin:$PATH
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
-PROMPT='%{$fg[$NCOLOR]%}%c $ %{$reset_color%}'
+PROMPT='%{$fg[$NCOLOR]%}%n@%m: %c$ %{$reset_color%}'
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 # Load custom files
@@ -22,7 +23,7 @@ compinit
 setopt auto_cd
 
 # use vim as an editor
-export EDITOR=vim
+export EDITOR=vi
 
 # aliases
 if [ -e "$HOME/.zsh/aliases" ]; then
