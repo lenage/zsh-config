@@ -11,6 +11,8 @@ export GOPATH=$HOME/Project/golang
 export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 ANDROIDPATH="/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"
 export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
+
+autoload -U colors && colors
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 
@@ -19,9 +21,9 @@ if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 if [ -n "$INSIDE_EMACS" ]; then
    PROMPT='%{$fg[$NCOLOR]%}%c $%{$reset_color%} '
 else
-   PROMPT='%{$fg[$NCOLOR]%}%c 🐚 %{$reset_color%} '
+   PROMPT='%{$fg[black]%}[%*]%{$reset_color%} %{$fg[$NCOLOR]%}%c %{$fg[cyan]%}$%{$reset_color%} '
 fi
-RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
+RPROMPT='%{$fg[black]%}$(git_prompt_info)%{$reset_color%}'
 
 # Load git functions
 #source "/Users/lenage/.zsh/lib/gpg-agent.zsh"
@@ -120,6 +122,22 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/usr/local/smlnj-110.75/bin:$PATH"
 ### add node PATH
 export PATH="/usr/local/share/npm/bin:$PATH"
+
+### DIRSTACK
+DIRSTACKFILE="$HOME/.zsh/cache/dirs"
+if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+  [[ -d $dirstack[1] ]] && cd $dirstack[1]
+fi
+chpwd() {
+  print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
+}
+DIRSTACKSIZE=20
+setopt autopushd pushdsilent pushdtohome
+## Remove duplicate entries
+setopt pushdignoredups
+## This reverts the +/- operators.
+setopt pushdminus
 
 ## plugins
 plugins=(colored-man)
