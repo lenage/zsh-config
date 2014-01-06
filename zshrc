@@ -6,10 +6,10 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(~/.zsh/completion $fpath)
 
 # Path
-export ANDROID_HOME="$HOME/Vendor/Android/sdk"
+export ANDROID_HOME="/Applications/Android Studio.app/sdk"
 export GOPATH=$HOME/Project/golang
 export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
-ANDROIDPATH="$HOME/Vendor/Android/sdk/tools:$HOME/Vendor/Android/sdk/platform-tools"
+ANDROIDPATH="/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"
 export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi

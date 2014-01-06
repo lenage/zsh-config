@@ -21,7 +21,7 @@ alias history='fc -l 1'
 
 # modified commands
 alias diff='colordiff'              # requires colordiff package
-alias grep='grep --color=auto -n'
+alias grep='grep --color=auto'
 alias more='less'
 alias df='df -h'
 alias du='du -c -h'
@@ -148,4 +148,3 @@ alias cap="bundle exec cap"
 alias sb='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 alias mux="tmuxinator"
 alias ehost="vim /etc/hosts"
-alias irb='pry'
