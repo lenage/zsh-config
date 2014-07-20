@@ -91,7 +91,7 @@ HISTCONTROL=ignoreboth
 HISTIGNORE='ls:bg:fg:history'
 HISTTIMEFORMAT='%F %T '
 
-setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_all_dups # ignore duplication command history list
 setopt share_history # share command history data
 
 setopt hist_verify
@@ -123,21 +123,11 @@ export PATH="/usr/local/smlnj-110.75/bin:$PATH"
 ### add node PATH
 export PATH="/usr/local/share/npm/bin:$PATH"
 
-### DIRSTACK
-DIRSTACKFILE="$HOME/.zsh/cache/dirs"
-if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
-  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-  [[ -d $dirstack[1] ]] && cd $dirstack[1]
-fi
-chpwd() {
-  print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-}
-DIRSTACKSIZE=20
-setopt autopushd pushdsilent pushdtohome
+## DIRSTACK
+DIRSTACKSIZE=8
+setopt autopushd pushdminus pushdsilent pushdtohome
 ## Remove duplicate entries
 setopt pushdignoredups
-## This reverts the +/- operators.
-setopt pushdminus
 
 ## plugins
 plugins=(colored-man)
@@ -157,3 +147,4 @@ export CDPATH=~/Project
 export WORKON_HOME=~/.pythonenv
 source /usr/local/bin/virtualenvwrapper.sh
 source /usr/local/Cellar/autoenv/0.1.0/activate.sh
+function gi() { curl http://www.gitignore.io/api/$@ ;}
