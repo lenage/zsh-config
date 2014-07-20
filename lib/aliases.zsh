@@ -148,3 +148,6 @@ alias cap="bundle exec cap"
 alias sb='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 alias mux="tmuxinator"
 alias ehost="vim /etc/hosts"
+
+### TMUX
+alias tma='tmux attach -d -t'
