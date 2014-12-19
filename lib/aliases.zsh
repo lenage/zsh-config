@@ -30,7 +30,6 @@ alias ping='ping -c 5'
 # new commands
 alias da='date "+%A, %B %d, %Y [%T] %Z"'
 alias hist='history | grep $1'      # requires an argument
-alias pg='ps -Af | grep $1'         # requires an argument (note: /usr/bin/pg is installed by the util-linux package; maybe a different alias name should be used)
 
 # privileged access
 if [ $UID -ne 0 ]; then
