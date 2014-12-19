@@ -1,3 +1,5 @@
+#!/bin/sh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.bash_profile
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
@@ -7,10 +9,13 @@ fpath=(~/.zsh/completion $fpath)
 
 # Path
 export ANDROID_HOME="/Applications/Android Studio.app/sdk"
+export GOROOT=/usr/local/Cellar/go/1.3.1/libexec
 export GOPATH=$HOME/Project/golang
 export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+## JAVA_HOME
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.7)"
 ANDROIDPATH="/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"
-export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
+export PATH="$JAVA_HOME/bin:$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
 
 autoload -U colors && colors
 # Setting ZSH_THEME
@@ -21,7 +26,7 @@ if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 if [ -n "$INSIDE_EMACS" ]; then
    PROMPT='%{$fg[$NCOLOR]%}%c $%{$reset_color%} '
 else
-   PROMPT='%{$fg[black]%}[%*]%{$reset_color%} %{$fg[$NCOLOR]%}%c %{$fg[cyan]%}$%{$reset_color%} '
+   PROMPT='%{$fg[black]%}!%! [%*]%{$reset_color%} %{$fg[$NCOLOR]%}%c %{$fg[cyan]%}$%{$reset_color%} '
 fi
 RPROMPT='%{$fg[black]%}$(git_prompt_info)%{$reset_color%}'
 
@@ -43,7 +48,12 @@ setopt auto_cd
 
 # use Emacs as an editor
 #export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
-export EDITOR="vim"
+
+if which nvim > /dev/null; then
+    export EDITOR="nvim"
+else
+    export EDITOR="vi"
+fi
 
 #use emacs keybinding
 bindkey -e
@@ -147,4 +157,6 @@ export CDPATH=~/Project
 export WORKON_HOME=~/.pythonenv
 source /usr/local/bin/virtualenvwrapper.sh
 source /usr/local/Cellar/autoenv/0.1.0/activate.sh
-function gi() { curl http://www.gitignore.io/api/$@ ;}
+
+## DOCKER
+export DOCKER_HOST=tcp://192.168.59.103:2375

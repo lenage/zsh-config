@@ -46,3 +46,5 @@ git_prompt_status() {
   fi
   echo $STATUS
 }
+
+function gi() { curl -s https://www.gitignore.io/api/$@ ;}
