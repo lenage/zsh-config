@@ -13,8 +13,6 @@ alias _='sudo'
 # Show history
 alias history='fc -l 1'
 
-
-
 ####################
 #fork from .bashrc #
 ####################
@@ -30,7 +28,7 @@ alias nano='nano -w'
 alias ping='ping -c 5'
 
 # new commands
-alias da='date "+%A, %B %d, %Y [%T]"'
+alias da='date "+%A, %B %d, %Y [%T] %Z"'
 alias hist='history | grep $1'      # requires an argument
 alias pg='ps -Af | grep $1'         # requires an argument (note: /usr/bin/pg is installed by the util-linux package; maybe a different alias name should be used)
 
