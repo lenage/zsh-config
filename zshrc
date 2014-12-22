@@ -1,6 +1,19 @@
 #!/bin/sh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.bash_profile
+
+# [ -z $TMUX ] && tmux list-sessions 2>/dev/null && tmux a
+# find this line in /etc/zshenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which hub > /dev/null; then eval "$(hub alias -s)"; fi
+#eval $(keychain --eval --quiet id_rsa 0D3453BA)
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator_completion ]] && source $HOME/.tmuxinator/scripts/tmuxinator_completion
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
+
+# QingCloud CLI
+# complete -C qingcloud_completer qingcloud
+
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 # load our own completion functions
@@ -13,9 +26,9 @@ export GOROOT=/usr/local/Cellar/go/1.3.1/libexec
 export GOPATH=$HOME/Project/golang
 export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 ## JAVA_HOME
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.7)"
+#export JAVA_HOME="$(/usr/libexec/java_home -v 1.7)"
 ANDROIDPATH="/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"
-export PATH="$JAVA_HOME/bin:$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
+export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
 
 autoload -U colors && colors
 # Setting ZSH_THEME
@@ -154,9 +167,9 @@ done
 export CDPATH=~/Project
 ## FOR python virtualenvwrapper
 #http://docs.python-guide.org/en/latest/dev/virtualenvs/
-export WORKON_HOME=~/.pythonenv
-source /usr/local/bin/virtualenvwrapper.sh
-source /usr/local/Cellar/autoenv/0.1.0/activate.sh
+#export WORKON_HOME=~/.pythonenv
+#source /usr/local/bin/virtualenvwrapper.sh
+#source /usr/local/Cellar/autoenv/0.1.0/activate.sh
 
 ## DOCKER
 export DOCKER_HOST=tcp://192.168.59.103:2375
