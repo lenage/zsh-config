@@ -10,7 +10,6 @@ if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator_completion ]] && source $HOME/.tmuxinator/scripts/tmuxinator_completion
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
-
 # QingCloud CLI
 # complete -C qingcloud_completer qingcloud
 
@@ -26,7 +25,7 @@ export GOROOT=/usr/local/Cellar/go/1.3.1/libexec
 export GOPATH=$HOME/Project/golang
 export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 ## JAVA_HOME
-#export JAVA_HOME="$(/usr/libexec/java_home -v 1.7)"
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 ANDROIDPATH="/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"
 export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
 
@@ -173,3 +172,16 @@ export CDPATH=~/Project
 
 ## DOCKER
 export DOCKER_HOST=tcp://192.168.59.103:2375
+
+# Qu Jing iTerm & Terminal Setup Script
+# version 0.4
+# Felix Ding
+# Nov 18, 2014
+#
+function start_qujing {
+  export http_proxy='http://theironislands.f.getqujing.net:46109'
+  export HTTPS_PROXY='http://theironislands.f.getqujing.net:46109'
+}
+
+export NVM_DIR="/Users/lenage/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
