@@ -21,13 +21,12 @@ fpath=(~/.zsh/completion $fpath)
 
 # Path
 export ANDROID_HOME="/Applications/Android Studio.app/sdk"
-export GOROOT=/usr/local/Cellar/go/1.3.1/libexec
-export GOPATH=$HOME/Project/golang
+export GOPATH=$HOME/Projects/golang
 export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 ## JAVA_HOME
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 ANDROIDPATH="/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"
-export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:$PATH";
+export PATH="$ANDROIDPATH:$PATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:/usr/local/opt/go/libexec/bin";
 
 autoload -U colors && colors
 # Setting ZSH_THEME
@@ -171,7 +170,9 @@ export CDPATH=~/Project
 #source /usr/local/Cellar/autoenv/0.1.0/activate.sh
 
 ## DOCKER
-export DOCKER_HOST=tcp://192.168.59.103:2375
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/lenage/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
 
 # Qu Jing iTerm & Terminal Setup Script
 # version 0.4
@@ -185,3 +186,6 @@ function start_qujing {
 
 export NVM_DIR="/Users/lenage/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# OPAM configuration
+. /Users/lenage/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

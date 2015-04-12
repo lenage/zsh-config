@@ -60,6 +60,8 @@ alias sl=ls # often screw this up
 
 # safety features
 alias cp='cp -v'
+# show progress when copying
+alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias mv='mv -i -v'
 alias ln='ln -i'
 #python 2to3
