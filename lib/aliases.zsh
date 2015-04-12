@@ -67,6 +67,8 @@ alias ln='ln -i'
 #python 2to3
 alias pserver='python -m SimpleHTTPServer'
 
+alias bububc='brew update && brew upgrade && brew clean'
+
 #alias for todo.txt
 function todo(){
   if [ $# -eq 0 ];then
@@ -145,7 +147,7 @@ alias github="cd ~/Project/github/"
 alias cap="bundle exec cap"
 alias sb='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 alias mux="tmuxinator"
-alias ehost="vim /etc/hosts"
+alias ehost="sudo vim /etc/hosts"
 
 ### TMUX
 alias tma='tmux attach -d -t'
