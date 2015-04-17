@@ -162,7 +162,6 @@ for plugin ($plugins); do
   fi
 done
 
-export CDPATH=~/Project
 ## FOR python virtualenvwrapper
 #http://docs.python-guide.org/en/latest/dev/virtualenvs/
 #export WORKON_HOME=~/.pythonenv
