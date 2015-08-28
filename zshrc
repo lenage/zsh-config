@@ -58,13 +58,13 @@ source "/Users/lenage/.zsh/custom/project.zsh"
 setopt auto_cd
 
 # use Emacs as an editor
-#export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
+export ALTERNATE_EDITOR=vi EDITOR=/usr/local/bin/emacsclient VISUAL=/usr/local/bin/emacsclient
 
-if which nvim > /dev/null; then
-    export EDITOR="nvim"
-else
-    export EDITOR="vi"
-fi
+#if which nvim > /dev/null; then
+#    export EDITOR="nvim"
+#else
+#    export EDITOR="vi"
+#fi
 
 #use emacs keybinding
 bindkey -e
@@ -179,8 +179,8 @@ export DOCKER_TLS_VERIFY=1
 # Nov 18, 2014
 #
 function start_qujing {
-  export http_proxy='http://theironislands.f.getqujing.net:46109'
-  export HTTPS_PROXY='http://theironislands.f.getqujing.net:46109'
+  export http_proxy='theironislands.f.getqujing.net:33298'
+  export HTTPS_PROXY='theironislands.f.getqujing.net:33298'
 }
 
 export NVM_DIR="/Users/lenage/.nvm"
