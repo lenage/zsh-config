@@ -154,7 +154,7 @@ setopt pushdignoredups
 plugins=(colored-man)
 
 # Load all of the plugins that were defined in ~/.zshrc
-for plugin ($plugins); do
+for plugin in $plugins; do
   if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
     source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
   elif [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
@@ -167,11 +167,6 @@ done
 #export WORKON_HOME=~/.pythonenv
 #source /usr/local/bin/virtualenvwrapper.sh
 #source /usr/local/Cellar/autoenv/0.1.0/activate.sh
-
-## DOCKER
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/lenage/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
 
 # Qu Jing iTerm & Terminal Setup Script
 # version 0.4
