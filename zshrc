@@ -1,10 +1,14 @@
 #!/bin/sh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # [ -z $TMUX ] && tmux list-sessions 2>/dev/null && tmux a
 # find this line in /etc/zshenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
+if which docker-machine > /dev/null; then
+  eval "$(docker-machine env default)"
+fi
+
 #eval $(keychain --eval --quiet id_rsa 0D3453BA)
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator_completion ]] && source $HOME/.tmuxinator/scripts/tmuxinator_completion
@@ -23,10 +27,12 @@ fpath=(~/.zsh/completion $fpath)
 export ANDROID_HOME="/Applications/Android Studio.app/sdk"
 export GOPATH=$HOME/Projects/golang
 export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+## or launchctl setenv STUDIO_JDK
+export STUDIO_JDK="$(/usr/libexec/java_home -v 1.8 | cut -d / -f 1-5)"
 ## JAVA_HOME
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 ANDROIDPATH="/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"
-export PATH="$ANDROIDPATH:$PATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:/Users/lenage/Project/golang/bin:/usr/local/opt/go/libexec/bin";
+export PATH="$ANDROIDPATH:$PATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin";
 
 autoload -U colors && colors
 # Setting ZSH_THEME
@@ -168,11 +174,6 @@ done
 #source /usr/local/bin/virtualenvwrapper.sh
 #source /usr/local/Cellar/autoenv/0.1.0/activate.sh
 
-# Qu Jing iTerm & Terminal Setup Script
-# version 0.4
-# Felix Ding
-# Nov 18, 2014
-#
 function start_qujing {
   export http_proxy='theironislands.f.getqujing.net:33298'
   export HTTPS_PROXY='theironislands.f.getqujing.net:33298'

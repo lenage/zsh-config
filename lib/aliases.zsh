@@ -151,3 +151,6 @@ alias ehost="sudo vim /etc/hosts"
 
 ### TMUX
 alias tma='tmux attach -d -t'
+
+## UTILS
+alias weather='curl -4 http://wttr.in'
