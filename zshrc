@@ -28,11 +28,17 @@ export ANDROID_HOME="/Applications/Android Studio.app/sdk"
 export GOPATH=$HOME/Projects/golang
 export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 ## or launchctl setenv STUDIO_JDK
-export STUDIO_JDK="$(/usr/libexec/java_home -v 1.8 | cut -d / -f 1-5)"
+export STUDIO_JDK=$(/usr/libexec/java_home -v 1.8 | cut -d / -f 1-5)
 ## JAVA_HOME
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 ANDROIDPATH="/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"
-export PATH="$ANDROIDPATH:$PATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin";
+### Added by the Heroku Toolbelt
+HEROKU_PATH="/usr/local/heroku/bin"
+### Added by the SMLNG 110.75
+NML_PATH="/usr/local/smlnj-110.75/bin"
+### add node PATH
+NPM_PATH="/usr/local/share/npm/bin"
+export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin:$HEROKU_PATH:$NML_PATH:$NPM_PATH:$PATH";
 
 autoload -U colors && colors
 # Setting ZSH_THEME
@@ -143,13 +149,6 @@ export PAGER=less
 export LC_CTYPE=en_US.UTF-8
 ulimit -s unlimited
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-### Added by the SMLNG 110.75
-export PATH="/usr/local/smlnj-110.75/bin:$PATH"
-### add node PATH
-export PATH="/usr/local/share/npm/bin:$PATH"
-
 ## DIRSTACK
 DIRSTACKSIZE=8
 setopt autopushd pushdminus pushdsilent pushdtohome
@@ -184,3 +183,5 @@ export NVM_DIR="/Users/lenage/.nvm"
 
 # OPAM configuration
 . /Users/lenage/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+export RUST_SRC_PATH=/Users/lenage/Projects/rust-lang/src
