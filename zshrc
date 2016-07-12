@@ -24,21 +24,20 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(~/.zsh/completion $fpath)
 
 # Path
-export ANDROID_HOME="/Applications/Android Studio.app/sdk"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
 export GOPATH=$HOME/Projects/golang
 export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 ## or launchctl setenv STUDIO_JDK
 export STUDIO_JDK=$(/usr/libexec/java_home -v 1.8 | cut -d / -f 1-5)
 ## JAVA_HOME
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-ANDROIDPATH="/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"
 ### Added by the Heroku Toolbelt
 HEROKU_PATH="/usr/local/heroku/bin"
 ### Added by the SMLNG 110.75
 NML_PATH="/usr/local/smlnj-110.75/bin"
 ### add node PATH
 NPM_PATH="/usr/local/share/npm/bin"
-export PATH="$ANDROIDPATH:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin:$HEROKU_PATH:$NML_PATH:$NPM_PATH:$PATH";
+export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin:$HEROKU_PATH:$NML_PATH:$NPM_PATH:$PATH";
 
 autoload -U colors && colors
 # Setting ZSH_THEME
