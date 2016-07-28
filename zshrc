@@ -11,8 +11,8 @@ PROMPT='%{$fg[$NCOLOR]%}%n@%m: %c$ %{$reset_color%}'
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
 # Load custom files
-source "/home/lenage/.zsh/lib/git.zsh"
-source "/home/lenage/.zsh/lib/completion.zsh"
+source "/home/ox66/.zsh/lib/git.zsh"
+source "/home/ox66/.zsh/lib/completion.zsh"
 
 
 # completion
@@ -115,3 +115,5 @@ ulimit -s unlimited
     #if not inside a tmux session, and if no session is started, start a new session
 #    test -z "$TMUX" && (tmux attach || tmux new-session)
 #fi
+
+[ -z "$DISPLAY" -a "$(fgconsole)" -eq 1 ] && exec startx
