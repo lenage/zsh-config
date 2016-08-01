@@ -1,19 +1,38 @@
 #source ~/.bash_profile
-export LC_ALL=C
+export LC_ALL=en_US.UTF-8
 # load our own completion functions
 fpath=(~/.zsh/completion $fpath)
 
+# init rbenv
+eval "$(rbenv init -)"
+
+# Init gpg-agent
+if ! [ -n "$(pgrep gpg-agent)" ]; then
+    eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+fi
+
 # Path
-#export PATH=/opt/vc/bin:~/bin:$PATH
+# TODO: using sub instead of ~/bin
+# https://github.com/basecamp/sub
+export PATH=$HOME/bin:$PATH
+
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 PROMPT='%{$fg[$NCOLOR]%}%n@%m: %c$ %{$reset_color%}'
 RPROMPT='%{$fg[$NCOLOR]%}%p $(git_prompt_info)%{$reset_color%}'
 
-# Load custom files
-source "/home/ox66/.zsh/lib/git.zsh"
-source "/home/ox66/.zsh/lib/completion.zsh"
+# Infinality
+# Makes fonts darker and thicker
+export INFINALITY_FT_BRIGHTNESS="-10"
+# Not too sharp, not too smooth
+export INFINALITY_FT_FILTER_PARAMS="16 20 28 20 16"
 
+# Load custom files
+source "$HOME/.zsh/lib/git.zsh"
+source "$HOME/.zsh/lib/completion.zsh"
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[ -f /etc/profile.d/autojump.zsh ] && source /etc/profile.d/autojump.zsh
 
 # completion
 autoload -U compinit
@@ -22,8 +41,8 @@ compinit
 # automatically enter directories without cd
 setopt auto_cd
 
-# use vim as an editor
-export EDITOR=vi
+# use emacs as default editor
+export EDITOR=vim
 
 # aliases
 if [ -e "$HOME/.zsh/aliases" ]; then
@@ -107,7 +126,6 @@ setopt long_list_jobs
 
 ## pager
 export PAGER=less
-export LC_CTYPE=en_US.UTF-8
 ulimit -s unlimited
 
 # TMUX
@@ -116,4 +134,7 @@ ulimit -s unlimited
 #    test -z "$TMUX" && (tmux attach || tmux new-session)
 #fi
 
-[ -z "$DISPLAY" -a "$(fgconsole)" -eq 1 ] && exec startx
+if ! xset q &>/dev/null; then
+    [ -z "$DISPLAY" -a "$(fgconsole)" -eq 1 ] && exec startx
+    echo "No X server at \$DISPLAY [$DISPLAY]" >&2
+fi
