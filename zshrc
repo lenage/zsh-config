@@ -1,12 +1,19 @@
 #!/bin/sh
 #source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
+    source ~/.gnupg/.gpg-agent-info
+    export GPG_AGENT_INFO
+else
+    eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+fi
+
 # [ -z $TMUX ] && tmux list-sessions 2>/dev/null && tmux a
 # find this line in /etc/zshenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 if which docker-machine > /dev/null; then
-  eval "$(docker-machine env default)"
+    eval "$(docker-machine env default)"
 fi
 
 #eval $(keychain --eval --quiet id_rsa 0D3453BA)
@@ -46,9 +53,9 @@ if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 # PROMPT='%{$fg[$NCOLOR]%}%c 🚴  %{$reset_color%}'
 # PROMPT='%{$fg[$NCOLOR]%}%c $(~/.rbenv/bin/rbenv-prompt) 🐚 %{$reset_color%}'
 if [ -n "$INSIDE_EMACS" ]; then
-   PROMPT='%{$fg[$NCOLOR]%}%c $%{$reset_color%} '
+    PROMPT='%{$fg[$NCOLOR]%}%c $%{$reset_color%} '
 else
-   PROMPT='%{$fg[black]%}!%! [%*]%{$reset_color%} %{$fg[$NCOLOR]%}%c %{$fg[cyan]%}$%{$reset_color%} '
+    PROMPT='%{$fg[black]%}!%! [%*]%{$reset_color%} %{$fg[$NCOLOR]%}%c %{$fg[cyan]%}$%{$reset_color%} '
 fi
 RPROMPT='%{$fg[black]%}$(git_prompt_info)%{$reset_color%}'
 
@@ -59,7 +66,7 @@ source "/Users/lenage/.zsh/lib/completion.zsh"
 source "/Users/lenage/.zsh/lib/correction.zsh"
 # aliases
 if [ -e "$HOME/.zsh/lib/aliases.zsh" ]; then
-  source "$HOME/.zsh/lib/aliases.zsh"
+    source "$HOME/.zsh/lib/aliases.zsh"
 fi
 # Load custom files
 source "/Users/lenage/.zsh/custom/lenage.zsh"
@@ -159,11 +166,11 @@ plugins=(colored-man)
 
 # Load all of the plugins that were defined in ~/.zshrc
 for plugin in $plugins; do
-  if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
-    source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
-  elif [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
-    source $ZSH/plugins/$plugin/$plugin.plugin.zsh
-  fi
+    if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
+        source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
+    elif [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
+        source $ZSH/plugins/$plugin/$plugin.plugin.zsh
+    fi
 done
 
 ## FOR python virtualenvwrapper
@@ -171,11 +178,6 @@ done
 #export WORKON_HOME=~/.pythonenv
 #source /usr/local/bin/virtualenvwrapper.sh
 #source /usr/local/Cellar/autoenv/0.1.0/activate.sh
-
-function start_qujing {
-  export http_proxy='theironislands.f.getqujing.net:33298'
-  export HTTPS_PROXY='theironislands.f.getqujing.net:33298'
-}
 
 export NVM_DIR="/Users/lenage/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
