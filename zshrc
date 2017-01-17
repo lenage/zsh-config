@@ -6,15 +6,27 @@ fpath=(~/.zsh/completion $fpath)
 # init rbenv
 eval "$(rbenv init -)"
 
-# Init gpg-agent
-if ! [ -n "$(pgrep gpg-agent)" ]; then
-    eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+#GPG-AGENT stuff
+
+# Start the gpg-agent if not already running
+if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
+  gpg-connect-agent /bye >/dev/null 2>&1
+fi
+
+# Set SSH to use gpg-agent
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export GPG_TTY=$(tty)
+  gpg-connect-agent updatestartuptty /bye >/dev/null
+  export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
 fi
 
 # Path
 # TODO: using sub instead of ~/bin
 # https://github.com/basecamp/sub
-export PATH=$HOME/bin:$PATH
+
+export GOPATH=$HOME/projects/golang
+export PATH=$HOME/.anaconda3/bin:$HOME/.cargo/bin:$HOME/bin:$GOPATH/bin:$PATH
 
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
@@ -138,3 +150,5 @@ if ! xset q &>/dev/null; then
     [ -z "$DISPLAY" -a "$(fgconsole)" -eq 1 ] && exec startx
     echo "No X server at \$DISPLAY [$DISPLAY]" >&2
 fi
+
+source /usr/share/autoenv/activate.sh
