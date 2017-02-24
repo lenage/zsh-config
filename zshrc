@@ -1,20 +1,18 @@
 #!/bin/sh
 #source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
-    source ~/.gnupg/.gpg-agent-info
-    export GPG_AGENT_INFO
-else
-    eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
-fi
+# if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
+#     source ~/.gnupg/.gpg-agent-info
+#     export GPG_AGENT_INFO
+#     echo 'what'
+# else
+#     eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+# fi
 
 # [ -z $TMUX ] && tmux list-sessions 2>/dev/null && tmux a
 # find this line in /etc/zshenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
-if which docker-machine > /dev/null; then
-    eval "$(docker-machine env default)"
-fi
 
 #eval $(keychain --eval --quiet id_rsa 0D3453BA)
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
@@ -33,7 +31,7 @@ fpath=(~/.zsh/completion $fpath)
 # Path
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export GOPATH=$HOME/Projects/golang
-export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+# export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 ## or launchctl setenv STUDIO_JDK
 export STUDIO_JDK=$(/usr/libexec/java_home -v 1.8 | cut -d / -f 1-5)
 ## JAVA_HOME
@@ -44,7 +42,7 @@ HEROKU_PATH="/usr/local/heroku/bin"
 NML_PATH="/usr/local/smlnj-110.75/bin"
 ### add node PATH
 NPM_PATH="/usr/local/share/npm/bin"
-export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin:$HEROKU_PATH:$NML_PATH:$NPM_PATH:$PATH";
+export PATH="$JAVA_HOME/bin:$HOME/anaconda3/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin:$HEROKU_PATH:$NML_PATH:$NPM_PATH:$PATH";
 
 autoload -U colors && colors
 # Setting ZSH_THEME
