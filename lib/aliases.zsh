@@ -154,3 +154,11 @@ alias tma='tmux attach -d -t'
 
 ## UTILS
 alias weather='curl -4 http://wttr.in'
+
+alias kafkacat='docker run ryane/kafkacat'
+
+alias bzb='bazel build'
+alias bzr='bazel run'
+alias bzt='bazel test --test_output=errors'
+alias klog='stern'
+alias sha256sum="shasum -a 256"

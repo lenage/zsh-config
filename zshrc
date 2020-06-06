@@ -22,7 +22,7 @@ if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 # QingCloud CLI
 # complete -C qingcloud_completer qingcloud
 
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # load our own completion functions
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -42,14 +42,12 @@ HEROKU_PATH="/usr/local/heroku/bin"
 NML_PATH="/usr/local/smlnj-110.75/bin"
 ### add node PATH
 NPM_PATH="/usr/local/share/npm/bin"
-export PATH="$JAVA_HOME/bin:$HOME/anaconda3/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin:$HEROKU_PATH:$NML_PATH:$NPM_PATH:$PATH";
+export PATH="$HOME/Projects/github/arcanist/bin:$JAVA_HOME/bin:$HOME/anaconda3/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin:$HEROKU_PATH:$NML_PATH:$NPM_PATH:$PATH";
 
 autoload -U colors && colors
 # Setting ZSH_THEME
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 
-# PROMPT='%{$fg[$NCOLOR]%}%c 🚴  %{$reset_color%}'
-# PROMPT='%{$fg[$NCOLOR]%}%c $(~/.rbenv/bin/rbenv-prompt) 🐚 %{$reset_color%}'
 if [ -n "$INSIDE_EMACS" ]; then
     PROMPT='%{$fg[$NCOLOR]%}%c $%{$reset_color%} '
 else
@@ -66,9 +64,6 @@ source "/Users/lenage/.zsh/lib/correction.zsh"
 if [ -e "$HOME/.zsh/lib/aliases.zsh" ]; then
     source "$HOME/.zsh/lib/aliases.zsh"
 fi
-# Load custom files
-source "/Users/lenage/.zsh/custom/lenage.zsh"
-source "/Users/lenage/.zsh/custom/project.zsh"
 
 # automatically enter directories without cd
 setopt auto_cd
@@ -180,7 +175,22 @@ done
 export NVM_DIR="/Users/lenage/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# OPAM configuration
-. /Users/lenage/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
 export RUST_SRC_PATH=/Users/lenage/Projects/rust-lang/src
+#source <(kubectl completion zsh)
+#eval "$(direnv hook zsh)"
+
+## bashcomp
+# autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+export PATH="/usr/local/opt/curl/bin:$PATH"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/lenage/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/lenage/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/lenage/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/lenage/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+## homebrew patch
+export HOMEBREW_BOTTLE_DOMAIN='https://mirrors.ustc.edu.cn/homebrew-bottles'
+
