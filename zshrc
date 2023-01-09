@@ -33,16 +33,14 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 export GOPATH=$HOME/Projects/golang
 # export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 ## or launchctl setenv STUDIO_JDK
-export STUDIO_JDK=$(/usr/libexec/java_home -v 1.8 | cut -d / -f 1-5)
-## JAVA_HOME
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export STUDIO_JDK=$(/usr/libexec/java_home | cut -d / -f 1-5)
 ### Added by the Heroku Toolbelt
 HEROKU_PATH="/usr/local/heroku/bin"
 ### Added by the SMLNG 110.75
 NML_PATH="/usr/local/smlnj-110.75/bin"
 ### add node PATH
 NPM_PATH="/usr/local/share/npm/bin"
-export PATH="$HOME/Projects/github/arcanist/bin:$JAVA_HOME/bin:$HOME/anaconda3/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin:$HEROKU_PATH:$NML_PATH:$NPM_PATH:$PATH";
+export PATH="$HOME/Projects/github/arcanist/bin:$HOME/anaconda3/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin:$HEROKU_PATH:$NML_PATH:$NPM_PATH:$PATH";
 
 autoload -U colors && colors
 # Setting ZSH_THEME
@@ -182,15 +180,17 @@ export RUST_SRC_PATH=/Users/lenage/Projects/rust-lang/src
 ## bashcomp
 # autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
-export PATH="/usr/local/opt/curl/bin:$PATH"
-
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/lenage/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/lenage/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+#if [ -f '/Users/lenage/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/lenage/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/lenage/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/lenage/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+#if [ -f '/Users/lenage/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/lenage/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 ## homebrew patch
 export HOMEBREW_BOTTLE_DOMAIN='https://mirrors.ustc.edu.cn/homebrew-bottles'
-
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+#if command -v pyenv 1>/dev/null 2>&1; then
+#  eval "$(pyenv init -)"
+#fi
