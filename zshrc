@@ -1,5 +1,4 @@
 #!/bin/sh
-#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
 #     source ~/.gnupg/.gpg-agent-info
@@ -11,6 +10,10 @@
 
 # [ -z $TMUX ] && tmux list-sessions 2>/dev/null && tmux a
 # find this line in /etc/zshenv
+#
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 
@@ -19,10 +22,7 @@ if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator_completion ]] && source $HOME/.tmuxinator/scripts/tmuxinator_completion
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
-# QingCloud CLI
-# complete -C qingcloud_completer qingcloud
-
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 # load our own completion functions
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -30,7 +30,9 @@ fpath=(~/.zsh/completion $fpath)
 
 # Path
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-export GOPATH=$HOME/Projects/golang
+export GOPATH=$HOME/code/go
+export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
+
 # export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 ## or launchctl setenv STUDIO_JDK
 export STUDIO_JDK=$(/usr/libexec/java_home | cut -d / -f 1-5)
@@ -41,6 +43,11 @@ NML_PATH="/usr/local/smlnj-110.75/bin"
 ### add node PATH
 NPM_PATH="/usr/local/share/npm/bin"
 export PATH="$HOME/Projects/github/arcanist/bin:$HOME/anaconda3/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$HOME/Library/Haskell/bin:/Users/lenage/bin:/usr/local/sbin:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin:/Users/lenage/.cargo/bin:$HEROKU_PATH:$NML_PATH:$NPM_PATH:$PATH";
+
+## k8s krew path
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+## cargo path
+export PATH="/Users/bytedance/.cargo/bin:$PATH"
 
 autoload -U colors && colors
 # Setting ZSH_THEME
@@ -54,10 +61,10 @@ fi
 RPROMPT='%{$fg[black]%}$(git_prompt_info)%{$reset_color%}'
 
 # Load git functions
-#source "/Users/lenage/.zsh/lib/gpg-agent.zsh"
-source "/Users/lenage/.zsh/lib/git.zsh"
-source "/Users/lenage/.zsh/lib/completion.zsh"
-source "/Users/lenage/.zsh/lib/correction.zsh"
+#source "/Users/bytedance/.zsh/lib/gpg-agent.zsh"
+source "/Users/bytedance/.zsh/lib/git.zsh"
+source "/Users/bytedance/.zsh/lib/completion.zsh"
+source "/Users/bytedance/.zsh/lib/correction.zsh"
 # aliases
 if [ -e "$HOME/.zsh/lib/aliases.zsh" ]; then
     source "$HOME/.zsh/lib/aliases.zsh"
@@ -67,7 +74,7 @@ fi
 setopt auto_cd
 
 # use Emacs as an editor
-export ALTERNATE_EDITOR=vi EDITOR=/usr/local/bin/emacsclient VISUAL=/usr/local/bin/emacsclient
+export ALTERNATE_EDITOR=vi EDITOR=/Users/bytedance/.nix-profile/bin/emacsclient VISUAL=/Users/bytedance/.nix-profile/bin/emacsclient
 
 #if which nvim > /dev/null; then
 #    export EDITOR="nvim"
@@ -168,14 +175,13 @@ done
 #http://docs.python-guide.org/en/latest/dev/virtualenvs/
 #export WORKON_HOME=~/.pythonenv
 #source /usr/local/bin/virtualenvwrapper.sh
-#source /usr/local/Cellar/autoenv/0.1.0/activate.sh
+source $(brew --prefix autoenv)/activate.sh
 
 export NVM_DIR="/Users/lenage/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export RUST_SRC_PATH=/Users/lenage/Projects/rust-lang/src
-#source <(kubectl completion zsh)
-#eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
 
 ## bashcomp
 # autoload -U +X compinit && compinit
@@ -194,3 +200,26 @@ export PATH="/usr/local/opt/openjdk/bin:$PATH"
 #if command -v pyenv 1>/dev/null 2>&1; then
 #  eval "$(pyenv init -)"
 #fi
+
+##-------------------- k8s releated config --------------------
+source <(kubectl completion zsh)
+#source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
+#PS1='$(kube_ps1)'$PS1
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/bytedance/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/bytedance/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/bytedance/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/bytedance/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

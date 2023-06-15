@@ -142,10 +142,7 @@ alias bi="bundle install"
 alias bl="bundle list"
 alias bu="bundle update"
 alias bp="bundle package"
-alias qor="cd ~/Project/qor/"
-alias github="cd ~/Project/github/"
 alias cap="bundle exec cap"
-alias sb='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 alias mux="tmuxinator"
 alias ehost="sudo vim /etc/hosts"
 
@@ -157,8 +154,12 @@ alias weather='curl -4 http://wttr.in'
 
 alias kafkacat='docker run ryane/kafkacat'
 
-alias bzb='bazel build'
-alias bzr='bazel run'
-alias bzt='bazel test --test_output=errors'
+alias bzb='bazelisk build'
+alias bzr='bazelisk run'
+alias bzt='bazelisk test --test_output=errors'
+alias bzl='bazelisk'
 alias klog='stern'
+alias k='kubectl'
 alias sha256sum="shasum -a 256"
+alias hm="home-manager"
+alias vc="/Applications/Visual\\ Studio\\ Code.app/contents/Resources/app/bin/code"
